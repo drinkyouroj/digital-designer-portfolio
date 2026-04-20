@@ -49,40 +49,43 @@ export default function Home() {
 
         {/* Center stack: wordmark left, character+bubble center, wordmark right */}
         <div className="flex-1 flex items-center justify-center relative">
-          <div className="flex items-center justify-center gap-4 md:gap-8">
+          <div className="flex items-end justify-center gap-2 md:gap-4">
             <h1
-              className="font-display font-bold uppercase text-white leading-none"
-              style={{ fontSize: "clamp(3.5rem, 15vw, 16rem)", letterSpacing: "-0.05em" }}
+              className="font-display font-black uppercase text-white leading-[0.85]"
+              style={{ fontSize: "clamp(4rem, 18vw, 18rem)", letterSpacing: "-0.06em" }}
             >
               Seth
             </h1>
 
-            <div className="flex flex-col items-center gap-3 relative">
-              <SpeechBubble>Open to Work!</SpeechBubble>
-              <PixelCharacter size={140} />
+            <div className="flex flex-col items-center relative self-end" style={{ marginBottom: "-2%" }}>
+              <div style={{ marginBottom: "12px" }}>
+                <SpeechBubble>Open to Work!</SpeechBubble>
+              </div>
+              <PixelCharacter size={240} />
             </div>
 
             <h1
-              className="font-display font-bold uppercase text-white leading-none"
-              style={{ fontSize: "clamp(3.5rem, 15vw, 16rem)", letterSpacing: "-0.05em" }}
+              className="font-display font-black uppercase text-white leading-[0.85]"
+              style={{ fontSize: "clamp(4rem, 18vw, 18rem)", letterSpacing: "-0.06em" }}
             >
               Lukin
             </h1>
           </div>
         </div>
 
-        {/* Bottom meta */}
+        {/* Bottom meta — 3 columns so ▼ sits dead center */}
         <div
-          className="flex flex-col gap-3 md:flex-row md:justify-between md:items-end font-mono text-[11px] uppercase tracking-widest"
+          className="grid grid-cols-3 items-end font-mono text-[11px] uppercase tracking-widest"
           style={{ color: "#CCCCCC" }}
         >
           <div className="flex flex-col gap-1">
             <span className="text-white">Digital Product Designer</span>
-            <span>Based in New York City · <LiveTime /></span>
+            <span>Based in New York City</span>
           </div>
-          <div className="flex flex-col md:items-end gap-1">
-            <span>UX · Web · Interaction · Motion · Visual</span>
-            <span className="opacity-60">↓ Scroll</span>
+          <div className="flex justify-center text-white text-base">▼</div>
+          <div className="flex flex-col items-end gap-1 text-right">
+            <span>UX, Web, Interaction,</span>
+            <span>Motion, Visual</span>
           </div>
         </div>
       </section>

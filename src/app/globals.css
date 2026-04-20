@@ -14,9 +14,12 @@
   --font-display: var(--font-onest),      var(--font-manrope), sans-serif;
 }
 
-html, body {
+html {
   background-color: #000000;
+}
+body {
   color: #FFFFFF;
+  background-color: transparent;
 }
 
 * {
