@@ -1,0 +1,33 @@
+@import "../../node_modules/tailwindcss/index.css";
+
+@theme {
+  --color-ink:        #FFFFFF;
+  --color-cream:      #000000;
+  --color-vermillion: #FF2F00;
+  --color-blush:      #F1BEBE;
+  --color-panel:      #0A0A0A;
+  --color-line:       #1E1E1E;
+  --color-mute:       #6E6E6E;
+
+  --font-sans:    var(--font-manrope),    system-ui, sans-serif;
+  --font-mono:    var(--font-fragment),   ui-monospace, monospace;
+  --font-display: var(--font-onest),      var(--font-manrope), sans-serif;
+}
+
+html, body {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+* {
+  cursor: none;
+}
+
+.offscreen {
+  visibility: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
