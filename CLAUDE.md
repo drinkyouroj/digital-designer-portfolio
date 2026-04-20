@@ -57,27 +57,24 @@ This is the canonical source for design tokens. Do not invent values — use onl
 
 The signature palette move is **vermillion on cream** (`#FF2F00` over `#EEEEEE`). Pink (`blush`) is hover/secondary only.
 
-### Tailwind config (`tailwind.config.ts`)
+### Tailwind config — v4 CSS-based (in `src/app/globals.css`)
 
-```ts
-theme: {
-  extend: {
-    colors: {
-      ink: "#000000",
-      cream: "#EEEEEE",
-      vermillion: "#FF2F00",
-      blush: "#F1BEBE",
-      panel: "#FFFFFF",
-      line: "#D9D9D9",
-      mute: "#B2B2B2",
-    },
-    fontFamily: {
-      sans:    ["Manrope", "system-ui", "sans-serif"],
-      mono:    ["'Fragment Mono'", "ui-monospace", "monospace"],
-      display: ["Onest", "Manrope", "sans-serif"],
-    },
-  },
-},
+This project uses **Tailwind v4** — there is no `tailwind.config.ts`. Design tokens are defined via `@theme` in `globals.css` and automatically generate utility classes (`bg-vermillion`, `text-cream`, `font-mono`, etc.).
+
+```css
+@theme {
+  --color-ink:        #000000;
+  --color-cream:      #EEEEEE;
+  --color-vermillion: #FF2F00;
+  --color-blush:      #F1BEBE;
+  --color-panel:      #FFFFFF;
+  --color-line:       #D9D9D9;
+  --color-mute:       #B2B2B2;
+
+  --font-sans:    var(--font-manrope),  system-ui, sans-serif;
+  --font-mono:    var(--font-fragment), ui-monospace, monospace;
+  --font-display: var(--font-onest),    var(--font-manrope), sans-serif;
+}
 ```
 
 ### Typography
