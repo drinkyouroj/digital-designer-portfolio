@@ -406,7 +406,7 @@ export default function RibbonHero() {
             className="relative flex-none overflow-visible"
             style={{
               width:  "clamp(180px, 18vw, 320px)",
-              height: "clamp(210px, 21vw, 380px)",
+              height: "clamp(150px, 15vw, 270px)",
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -415,7 +415,7 @@ export default function RibbonHero() {
               alt=""
               className="absolute left-1/2 bottom-0 -translate-x-1/2 w-auto pointer-events-none"
               style={{
-                height: "115%",
+                height: "100%",
                 imageRendering: "pixelated",
                 filter: "drop-shadow(0 6px 0 rgba(0,0,0,0.35))",
               }}
