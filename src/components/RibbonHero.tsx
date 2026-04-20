@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // ── Baked-in config (design defaults for Justin Hearn) ─────────────
 const C = {
@@ -89,12 +90,25 @@ export default function RibbonHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef  = useRef<HTMLCanvasElement>(null);
   const [time, setTime] = useState("");
+  const [vh, setVh] = useState(900);
+
+  const { scrollY } = useScroll();
+  // wordmark bottom ≈ 55% of vh; translate at 0.55× so it meets the
+  // below-fold content top (which arrives at y=0 at scrollY = 1vh)
+  const contentY = useTransform(scrollY, [0, vh], [0, -vh * 0.55]);
 
   useEffect(() => {
     const fmt = () => new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
     setTime(fmt());
     const id = setInterval(() => setTime(fmt()), 15_000);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const update = () => setVh(window.innerHeight);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   useEffect(() => {
@@ -344,14 +358,18 @@ export default function RibbonHero() {
   return (
     <section
       ref={sectionRef}
-      className="sticky top-0 w-full h-screen overflow-hidden"
-      style={{ backgroundColor: "#0b0b0d", zIndex: 1 }}
+      className="sticky top-0 w-full h-screen"
+      style={{ backgroundColor: "#0b0b0d", zIndex: 1, overflowX: "clip" }}
     >
+      {/* Canvas stays completely static */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 block w-full h-full"
         style={{ imageRendering: "pixelated" }}
       />
+
+      {/* All UI scrolls upward at 0.55× speed (parallax) */}
+      <motion.div className="absolute inset-0" style={{ y: contentY }}>
 
       {/* ── Top meta ── */}
       <div
@@ -474,6 +492,8 @@ export default function RibbonHero() {
           <span className="opacity-60">FULL-STACK · INFRASTRUCTURE</span>
         </div>
       </div>
+
+      </motion.div>
     </section>
   );
 }
