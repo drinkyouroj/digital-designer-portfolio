@@ -393,7 +393,7 @@ export default function RibbonHero() {
           className="flex items-center justify-center w-full font-display font-black uppercase text-white"
           style={{
             padding: "0 3vw",
-            fontSize: "clamp(64px, 19.5vw, 340px)",
+            fontSize: "clamp(48px, 13vw, 230px)",
             letterSpacing: "-0.055em",
             lineHeight: 0.85,
             whiteSpace: "nowrap",
@@ -405,8 +405,8 @@ export default function RibbonHero() {
           <span
             className="relative flex-none overflow-visible"
             style={{
-              width:  "clamp(120px, 13vw, 240px)",
-              height: "clamp(140px, 15vw, 280px)",
+              width:  "clamp(180px, 18vw, 320px)",
+              height: "clamp(210px, 21vw, 380px)",
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
