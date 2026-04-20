@@ -1,8 +1,5 @@
-import HeroGL from "@/components/HeroGL";
-import ScrollGate from "@/components/ScrollGate";
+import RibbonHero from "@/components/RibbonHero";
 import CaseStudyGrid from "@/components/CaseStudyGrid";
-import PixelCharacter from "@/components/PixelCharacter";
-import SpeechBubble from "@/components/SpeechBubble";
 import Marquee from "@/components/Marquee";
 import Link from "next/link";
 
@@ -20,78 +17,9 @@ const WRITING = [
 export default function Home() {
   return (
     <>
-      <HeroGL />
-      <ScrollGate />
+      <RibbonHero />
 
-      {/* ── Hero — sticky pin, sits BEHIND scrolling content ── */}
-      <section
-        id="hero"
-        className="sticky top-0 h-screen flex flex-col px-6 py-6 md:px-10"
-        style={{ zIndex: 1 }}
-      >
-        {/* Top nav */}
-        <div
-          className="flex justify-between items-center font-mono text-[11px] uppercase tracking-widest"
-          style={{ color: "#CCCCCC" }}
-        >
-          <a href="mailto:hello@justin.hearn.me" data-cursor="finger" className="hover:text-white">
-            Hello@justin.hearn.me
-          </a>
-          <a
-            href="https://linkedin.com/in/jhearn/"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cursor="finger"
-            className="hover:text-white"
-          >
-            LinkedIn.com/in/jhearn
-          </a>
-        </div>
-
-        {/* Center stack: wordmark left, character+bubble center, wordmark right */}
-        <div className="flex-1 flex items-center justify-center relative">
-          <div className="flex items-end justify-center gap-2 md:gap-4">
-            <h1
-              className="font-display font-black uppercase text-white leading-[0.85]"
-              style={{ fontSize: "clamp(4rem, 18vw, 18rem)", letterSpacing: "-0.06em" }}
-            >
-              Justin
-            </h1>
-
-            <div className="flex flex-col items-center relative self-end" style={{ marginBottom: "-2%" }}>
-              <div style={{ marginBottom: "12px" }}>
-                <SpeechBubble>Let&apos;s Build!</SpeechBubble>
-              </div>
-              <PixelCharacter size={240} />
-            </div>
-
-            <h1
-              className="font-display font-black uppercase text-white leading-[0.85]"
-              style={{ fontSize: "clamp(4rem, 18vw, 18rem)", letterSpacing: "-0.06em" }}
-            >
-              Hearn
-            </h1>
-          </div>
-        </div>
-
-        {/* Bottom meta — 3 columns so ▼ sits dead center */}
-        <div
-          className="grid grid-cols-3 items-end font-mono text-[11px] uppercase tracking-widest"
-          style={{ color: "#CCCCCC" }}
-        >
-          <div className="flex flex-col gap-1">
-            <span className="text-white">AI-Augmented Engineering</span>
-            <span>Based in Southeast Michigan</span>
-          </div>
-          <div className="flex justify-center text-white text-base">▼</div>
-          <div className="flex flex-col items-end gap-1 text-right">
-            <span>Systems, AI Integration,</span>
-            <span>Full-Stack, Infrastructure</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Scrolling content — opaque dark bg covers the sticky hero ── */}
+      {/* ── Scrolling content — slides over the sticky hero ── */}
       <div className="relative" style={{ zIndex: 10, backgroundColor: "#0A0A0A" }}>
 
         <Marquee />
