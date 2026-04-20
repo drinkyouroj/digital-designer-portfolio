@@ -1,19 +1,20 @@
 import HeroGL from "@/components/HeroGL";
 import ScrollGate from "@/components/ScrollGate";
 import CaseStudyGrid from "@/components/CaseStudyGrid";
-import LiveTime from "@/components/LiveTime";
 import PixelCharacter from "@/components/PixelCharacter";
 import SpeechBubble from "@/components/SpeechBubble";
 import Marquee from "@/components/Marquee";
 import Link from "next/link";
 
 const SKILLS =
-  "UX / UI · MOBILE · WEB · VISUAL · MOTION · ART DIRECTION · PRODUCT · DESIGN SYSTEMS · RESEARCH · ACCESSIBILITY · PROTOTYPING · NO-CODE";
+  "SYSTEMS THINKING · AI INTEGRATION · CLAUDE API · NEXT.JS · FASTAPI · POSTGRESQL · INFRASTRUCTURE · INCIDENT RESPONSE · AUTOMATION · DATA VISUALIZATION";
 
-const EXPERIMENTS = [
-  { title: "Type Exploration", year: "2025", device: "desktop" },
-  { title: "Motion Studies",   year: "2025", device: "mobile"  },
-  { title: "Color System",     year: "2024", device: "tablet"  },
+const WRITING = [
+  {
+    title: "Obsidian Was Never the Problem",
+    date: "Apr 2026",
+    href: "https://drinkyouroj.substack.com",
+  },
 ];
 
 export default function Home() {
@@ -33,56 +34,59 @@ export default function Home() {
           className="flex justify-between items-center font-mono text-[11px] uppercase tracking-widest"
           style={{ color: "#CCCCCC" }}
         >
-          <a href="mailto:hello@sethlukin.com" data-cursor="finger" className="hover:text-white">
-            Hello@sethlukin.com
+          <a href="mailto:hello@justin.hearn.me" data-cursor="finger" className="hover:text-white">
+            Hello@justin.hearn.me
           </a>
           <a
-            href="https://linkedin.com/in/sethlukin"
+            href="https://linkedin.com/in/jhearn/"
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="finger"
             className="hover:text-white"
           >
-            LinkedIn.com/in/sethlukin
+            LinkedIn.com/in/jhearn
           </a>
         </div>
 
         {/* Center stack: wordmark left, character+bubble center, wordmark right */}
         <div className="flex-1 flex items-center justify-center relative">
-          <div className="flex items-center justify-center gap-4 md:gap-8">
+          <div className="flex items-end justify-center gap-2 md:gap-4">
             <h1
-              className="font-display font-bold uppercase text-white leading-none"
-              style={{ fontSize: "clamp(3.5rem, 15vw, 16rem)", letterSpacing: "-0.05em" }}
+              className="font-display font-black uppercase text-white leading-[0.85]"
+              style={{ fontSize: "clamp(4rem, 18vw, 18rem)", letterSpacing: "-0.06em" }}
             >
-              Seth
+              Justin
             </h1>
 
-            <div className="flex flex-col items-center gap-3 relative">
-              <SpeechBubble>Open to Work!</SpeechBubble>
-              <PixelCharacter size={140} />
+            <div className="flex flex-col items-center relative self-end" style={{ marginBottom: "-2%" }}>
+              <div style={{ marginBottom: "12px" }}>
+                <SpeechBubble>Let&apos;s Build!</SpeechBubble>
+              </div>
+              <PixelCharacter size={240} />
             </div>
 
             <h1
-              className="font-display font-bold uppercase text-white leading-none"
-              style={{ fontSize: "clamp(3.5rem, 15vw, 16rem)", letterSpacing: "-0.05em" }}
+              className="font-display font-black uppercase text-white leading-[0.85]"
+              style={{ fontSize: "clamp(4rem, 18vw, 18rem)", letterSpacing: "-0.06em" }}
             >
-              Lukin
+              Hearn
             </h1>
           </div>
         </div>
 
-        {/* Bottom meta */}
+        {/* Bottom meta — 3 columns so ▼ sits dead center */}
         <div
-          className="flex flex-col gap-3 md:flex-row md:justify-between md:items-end font-mono text-[11px] uppercase tracking-widest"
+          className="grid grid-cols-3 items-end font-mono text-[11px] uppercase tracking-widest"
           style={{ color: "#CCCCCC" }}
         >
           <div className="flex flex-col gap-1">
-            <span className="text-white">Digital Product Designer</span>
-            <span>Based in New York City · <LiveTime /></span>
+            <span className="text-white">AI-Augmented Engineering</span>
+            <span>Based in Southeast Michigan</span>
           </div>
-          <div className="flex flex-col md:items-end gap-1">
-            <span>UX · Web · Interaction · Motion · Visual</span>
-            <span className="opacity-60">↓ Scroll</span>
+          <div className="flex justify-center text-white text-base">▼</div>
+          <div className="flex flex-col items-end gap-1 text-right">
+            <span>Systems, AI Integration,</span>
+            <span>Full-Stack, Infrastructure</span>
           </div>
         </div>
       </section>
@@ -92,38 +96,57 @@ export default function Home() {
 
         <Marquee />
 
+        {/* ── Projects ── */}
         <section className="px-6 pt-20 pb-24 md:px-10">
           <h2 className="font-mono text-xs uppercase tracking-widest mb-10" style={{ color: "#888" }}>
-            Case Studies
+            Selected Projects
           </h2>
           <CaseStudyGrid />
         </section>
 
+        {/* ── Writing ── */}
         <section
           className="px-6 py-24 md:px-10"
           style={{ borderTop: "1px solid #1E1E1E" }}
         >
-          <h2 className="font-mono text-xs uppercase tracking-widest mb-10" style={{ color: "#888" }}>
-            Experiments
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {EXPERIMENTS.map((e) => (
-              <div
-                key={e.title}
-                className="rounded-xl flex items-end p-5"
-                style={{ backgroundColor: "#141414", aspectRatio: "16/9" }}
-              >
-                <div>
-                  <p className="font-mono text-xs uppercase tracking-widest mb-1" style={{ color: "#6E6E6E" }}>
-                    {e.year} · {e.device}
-                  </p>
-                  <h3 className="font-sans font-semibold text-lg text-white">{e.title}</h3>
-                </div>
-              </div>
-            ))}
+          <div className="flex justify-between items-baseline mb-10">
+            <h2 className="font-mono text-xs uppercase tracking-widest" style={{ color: "#888" }}>
+              Writing
+            </h2>
+            <a
+              href="https://drinkyouroj.substack.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="finger"
+              className="font-mono text-xs uppercase tracking-widest hover:text-white"
+              style={{ color: "#888" }}
+            >
+              drinkyouroj.substack.com →
+            </a>
           </div>
+          <ul className="flex flex-col">
+            {WRITING.map((w) => (
+              <li key={w.title} style={{ borderTop: "1px solid #1E1E1E" }}>
+                <a
+                  href={w.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="finger"
+                  className="group flex items-baseline justify-between py-6 hover:text-vermillion transition-colors"
+                >
+                  <h3 className="font-display font-semibold text-2xl md:text-3xl text-white group-hover:text-vermillion">
+                    {w.title}
+                  </h3>
+                  <span className="font-mono text-xs uppercase tracking-widest" style={{ color: "#888" }}>
+                    {w.date}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
 
+        {/* ── Skills ── */}
         <section
           className="px-6 py-16 md:px-10"
           style={{ borderTop: "1px solid #1E1E1E" }}
@@ -133,6 +156,7 @@ export default function Home() {
           </p>
         </section>
 
+        {/* ── Footer ── */}
         <footer
           className="px-6 py-16 md:px-10"
           style={{ borderTop: "1px solid #1E1E1E" }}
@@ -140,27 +164,58 @@ export default function Home() {
           <div className="flex flex-col gap-6 md:flex-row md:justify-between md:items-end">
             <div className="flex flex-col gap-2">
               <a
-                href="mailto:hello@sethlukin.com"
+                href="mailto:hello@justin.hearn.me"
                 data-cursor="finger"
                 className="font-display text-2xl font-semibold text-white uppercase tracking-tight hover:text-vermillion transition-colors"
               >
-                Hello@sethlukin.com
+                Hello@justin.hearn.me
               </a>
-              <a
-                href="https://linkedin.com/in/sethlukin"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="finger"
-                className="font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"
-                style={{ color: "#888" }}
-              >
-                LinkedIn.com/in/sethlukin
-              </a>
+              <div className="flex gap-4 font-mono text-xs uppercase tracking-widest" style={{ color: "#888" }}>
+                <a
+                  href="https://github.com/drinkyouroj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="finger"
+                  className="hover:text-white transition-colors"
+                >
+                  GitHub
+                </a>
+                <span>·</span>
+                <a
+                  href="https://linkedin.com/in/jhearn/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="finger"
+                  className="hover:text-white transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <span>·</span>
+                <a
+                  href="https://drinkyouroj.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="finger"
+                  className="hover:text-white transition-colors"
+                >
+                  Substack
+                </a>
+                <span>·</span>
+                <a
+                  href="https://standardresume.co/r/justinhearn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="finger"
+                  className="hover:text-white transition-colors"
+                >
+                  Résumé
+                </a>
+              </div>
             </div>
 
             <div className="flex flex-col items-start md:items-end gap-2">
               <p className="font-mono text-xs uppercase tracking-widest" style={{ color: "#888" }}>
-                The New School, New York
+                15+ yrs · Meta Reality Labs · Rackspace
               </p>
               <Link
                 href="/brief"
@@ -173,7 +228,7 @@ export default function Home() {
           </div>
 
           <p className="font-mono text-xs mt-12 uppercase tracking-widest" style={{ color: "#555" }}>
-            © 2025 · Designed &amp; built with care
+            © 2026 Justin Hearn · Built with Claude
           </p>
         </footer>
       </div>

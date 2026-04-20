@@ -4,9 +4,24 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const PROJECTS = [
-  { slug: "luuna",     title: "Luuna",     year: "2024", desc: "Sleep & wellness brand" },
-  { slug: "twinby",    title: "Twinby",    year: "2023", desc: "Social discovery platform" },
-  { slug: "adc-space", title: "ADC Space", year: "2023", desc: "Creative community hub" },
+  {
+    slug:  "ghost-editor",
+    title: "GhostEditor",
+    year:  "2026",
+    desc:  "AI developmental editor — chapter-by-chapter manuscript analysis, story-bible generation, continuity flagging",
+  },
+  {
+    slug:  "thread-cartographer",
+    title: "Thread Cartographer",
+    year:  "2025",
+    desc:  "Reddit comment threads as interactive force-directed graphs",
+  },
+  {
+    slug:  "intakeform-ai",
+    title: "IntakeForm-AI",
+    year:  "2025",
+    desc:  "AI-powered intake forms that cut manual data-entry through intelligent parsing",
+  },
 ] as const;
 
 export default function CaseStudyGrid() {
