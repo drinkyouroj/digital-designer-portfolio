@@ -48,12 +48,13 @@ float fbm(vec2 p) {
 #define PI 3.14159265359
 
 void main() {
-  // Pixel grid
-  float pixel = 2.0;
+  // Chunky pixel grid — 5px cells produce visible blocks
+  float pixel = 5.0;
   vec2 px = floor(gl_FragCoord.xy / pixel);
 
-  // Normalized screen position (aspect-corrected)
-  vec2 uv = gl_FragCoord.xy / uRes;
+  // Normalized screen position (aspect-corrected), snapped to cells
+  vec2 snapCoord = px * pixel;
+  vec2 uv = snapCoord / uRes;
   float aspect = uRes.x / uRes.y;
   vec2 uvA = vec2((uv.x - 0.5) * aspect, uv.y - 0.5);
   vec2 mouseA = vec2((uMouse.x - 0.5) * aspect, uMouse.y - 0.5);
@@ -61,10 +62,12 @@ void main() {
   // Mouse push: ribbons flow AWAY from cursor, strength falls off with distance
   vec2  toMouse = uvA - mouseA;
   float dMouse  = length(toMouse);
-  vec2  mouseWarp = normalize(toMouse + 1e-4) * exp(-dMouse * 2.8) * 0.35;
+  vec2  mouseWarp = normalize(toMouse + 1e-4) * exp(-dMouse * 2.8) * 0.45;
 
-  float t = uTime * 0.05;
-  vec2 cell = px / 90.0 + mouseWarp;
+  // Time also quantized so the field "ticks" in chunks instead of sliding smoothly
+  float t = floor(uTime * 8.0) / 8.0 * 0.05;
+
+  vec2 cell = px / 60.0 + mouseWarp;
 
   // Two-step domain warp for S-curves
   vec2 q = vec2(
@@ -77,20 +80,27 @@ void main() {
   );
   float f = fbm(cell + 3.0 * r);
 
-  // Sine level sets → ribbons
-  float ribbons = sin(f * PI * 6.0 + t * 2.0);
-  float band    = smoothstep(0.00, 0.50, ribbons);
+  // POSTERIZE the field to 6 tone steps → chunky ribbon edges
+  f = floor(f * 6.0) / 6.0;
+
+  // Sine level sets → ribbons, hard-stepped (no smoothstep = crisp edges)
+  float ribbons = sin(f * PI * 5.0 + t * 2.0);
+  float band    = step(0.15, ribbons);
 
   // Mouse halo: brighter near cursor
   float halo = exp(-dMouse * 3.0) * 0.55;
 
-  // Radial fade (outer edges quieter) — inverted by halo near cursor
+  // Radial fade, also posterized to 5 levels
   float rad = length(uvA);
-  float density = clamp(band - rad * 0.22 + halo, 0.0, 1.0);
+  float radFade = floor((1.0 - rad * 0.9) * 5.0) / 5.0;
 
-  // Stipple
-  float stipple = hash(px + floor(t * 30.0) * 0.001);
-  float lit = step(stipple, density * density);
+  // Density is now discrete (posterized band + posterized radial)
+  float density = clamp(band * radFade + halo, 0.0, 1.0);
+
+  // Coarser stipple — use a larger cell hash so dots cluster into blocks
+  vec2 stippleCell = floor(px / 1.0); // keep at pixel granularity
+  float stipple = hash(stippleCell);
+  float lit = step(stipple, density);
 
   // ── COLOR ────────────────────────────────────────────────────────────
   // Base palette: vermillion → blush → cyan, swept by the warp field
@@ -99,10 +109,12 @@ void main() {
   vec3 cyan       = vec3(0.35, 0.85, 1.00);
   vec3 white      = vec3(1.00, 1.00, 1.00);
 
-  // Drift hue across the field so ribbons have colored zones
+  // Drift hue across the field, then posterize to 4 discrete color zones
   float hue = fract(f + t * 0.4 + length(q) * 0.2);
-  vec3 ribbonColor = mix(vermillion, cyan, smoothstep(0.2, 0.8, hue));
-  ribbonColor      = mix(ribbonColor, white, smoothstep(0.8, 1.0, hue));
+  hue = floor(hue * 4.0) / 4.0; // 4 discrete hue bands
+  vec3 ribbonColor = mix(vermillion, cyan, step(0.35, hue));
+  ribbonColor      = mix(ribbonColor, blush, step(0.6, hue));
+  ribbonColor      = mix(ribbonColor, white, step(0.85, hue));
 
   // Extra pop near the mouse (warmer, punchier)
   ribbonColor = mix(ribbonColor, vermillion, clamp(halo * 1.6, 0.0, 0.75));

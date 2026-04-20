@@ -25,8 +25,8 @@ const onest = Onest({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Product Designer",
-  description: "Portfolio of a digital product designer based in New York City.",
+  title: "Justin Hearn — AI-Augmented Engineering",
+  description: "15+ years of systems thinking, now amplified by AI. Based in Southeast Michigan.",
 };
 
 export default function RootLayout({

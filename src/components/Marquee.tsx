@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const ITEMS = [
   "Available for Work",
-  "Based in NYC",
-  "Est. 2019",
-  "Digital Product Designer",
+  "AI-Augmented Engineering",
+  "Based in Southeast Michigan",
+  "15+ Years Shipping",
   "Let's Build Something",
 ];
 
