@@ -19,8 +19,8 @@ export default function Home() {
     <>
       <RibbonHero />
 
-      {/* ── Scrolling content ── */}
-      <div className="relative" style={{ backgroundColor: "#0A0A0A" }}>
+      {/* ── Scrolling content — slides over the sticky hero ── */}
+      <div className="relative" style={{ zIndex: 10, backgroundColor: "#0A0A0A" }}>
 
         <Marquee />
 

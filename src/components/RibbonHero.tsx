@@ -344,8 +344,8 @@ export default function RibbonHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-screen h-screen overflow-hidden"
-      style={{ backgroundColor: "#0b0b0d" }}
+      className="sticky top-0 w-full h-screen overflow-hidden"
+      style={{ backgroundColor: "#0b0b0d", zIndex: 1 }}
     >
       <canvas
         ref={canvasRef}
