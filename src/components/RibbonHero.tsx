@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 // ── Baked-in config (design defaults for Justin Hearn) ─────────────
 const C = {
   pixel: 3, quant: 1, dither: false,
-  count: 35, width: 14, length: 200, speed: 36,
+  count: 70, width: 14, length: 200, speed: 36,
   turb: 50, flow: 335, swirl: 71,
   mMode: "flow", mStr: 126, mRadius: 335,
   mTrail: true, mParallax: true, fade: 14,
@@ -427,10 +428,12 @@ export default function RibbonHero() {
               height: "clamp(150px, 15vw, 270px)",
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/character.png"
               alt=""
+              width={320}
+              height={270}
+              unoptimized
               className="absolute left-1/2 bottom-0 -translate-x-1/2 w-auto pointer-events-none"
               style={{
                 height: "100%",
