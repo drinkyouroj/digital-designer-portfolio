@@ -7,7 +7,7 @@ import Image from "next/image";
 // ── Baked-in config (design defaults for Justin Hearn) ─────────────
 const C = {
   pixel: 3, quant: 1, dither: false,
-  count: 35, width: 14, length: 200, speed: 36,
+  count: 70, width: 14, length: 200, speed: 36,
   turb: 50, flow: 335, swirl: 71,
   mMode: "flow", mStr: 126, mRadius: 335,
   mTrail: true, mParallax: true, fade: 14,
