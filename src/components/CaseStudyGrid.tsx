@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const PROJECTS = [
   {
@@ -57,13 +58,13 @@ export default function CaseStudyGrid() {
             <div className="absolute inset-0 bg-vermillion/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             {/* Coin GIF accent — hidden until asset added to /public/coin.gif */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/coin.gif"
               alt=""
               aria-hidden="true"
               width={32}
               height={32}
+              unoptimized
               onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             />
