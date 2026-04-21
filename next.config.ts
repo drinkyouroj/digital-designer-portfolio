@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
   output: "export",      // emit static HTML — no Node server required
   trailingSlash: true,   // /case-studies/ghost-editor → /case-studies/ghost-editor/index.html
   basePath,
+  env: {
+    // Expose basePath so components can manually prefix public asset URLs.
+    // next/image does NOT prepend basePath in static export mode.
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
     unoptimized: true,   // required for static export (no Image Optimization server)
   },
